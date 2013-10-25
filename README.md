@@ -1,4 +1,4 @@
 dharmatalks
 ===========
 
-DharmaTalks app
+A DharmaTalks app

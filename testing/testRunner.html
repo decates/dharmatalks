@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Test Template</title>
+    
+    <!-- Load up Jasmine -->
+    <link rel="stylesheet" href="../css/jasmine.css" />
+    <script src="../js/jasmine.js"></script>
+    <script src="../js/jasmine-html.js"></script>
+    
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/sinon-1.7.3.js"></script>
+    <script src="../js/angular-mocks.js"></script>
+    
+    <!-- The application code -->
+    <script src="../js/app/controllers.js"></script>
+    <script src="../js/app/services.js"></script>
+    
+    <!-- The test specs -->
+    <script src="../js/app/controllers.tests.js"></script>
+    <script src="../js/app/services.tests.js"></script>
+    
+    <!-- Run the Jasmine tests -->
+    <script src="jasmineBootstrap.js"></script>
+  </head>
+
+  <body>
+    <!-- Unit tests are displayed here -->
+    <div id="HTMLReporter" class="jasmine_reporter"></div>
+  </body>
+
+</html>

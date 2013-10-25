@@ -1,0 +1,11 @@
+﻿<h3>Recent talks</h3>
+<div class="list-group">
+    <a href="#/teachers/{{talk.teacherId}}/talk/{{talk.id}}" class="list-group-item" ng-repeat="talk in talks">
+        <!--<div class="pull-left" style="margin-right: 10px;">
+            <img class="media-object" src="http://media.dharmaseed.org/uploads/photos/teacher_{{talk.teacherId}}_125_0.png" height="64" alt="..." />
+        </div>-->
+        <h4 class="list-group-item-heading">{{talk.talkName}}</h4>
+        <p class="list-group-item-text">{{talk.teacherName}}</p>
+        <small class="list-group-item-text">{{talk.date | date}}</small>
+    </a>
+</div>

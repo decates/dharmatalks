@@ -51,7 +51,7 @@ function TalkCtrl($scope, $routeParams, TalkService) {
                 swfPath: "jplayer/",
                 supplied: "mp3"
             });
-    $scope.player.clearMedia();
+    //$scope.player.clearMedia();
     $scope.player.setMedia({
         mp3: $scope.talk.mediaUrl
     });

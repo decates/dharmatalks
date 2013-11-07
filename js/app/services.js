@@ -80,13 +80,14 @@
             var talks = [];
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
+                var title = item.getElementsByTagName('title')[0].textContent;
                 var talk = {
                     id: item.getElementsByTagName('guid')[0].textContent,
                     teacherId: 1,
                     teacherName: item.getElementsByTagName('author')[0].textContent,
-                    talkName: item.getElementsByTagName('title')[0].textContent,
+                    talkName: title.substr(title.indexOf(':') + 2),
                     talkDesc: item.getElementsByTagName('description')[0].textContent,
-                    date: new Date(2000, 1, 1),
+                    date: new Date(item.getElementsByTagName('pubDate')[0].textContent),
                     mediaUrl: item.getElementsByTagName('link')[0].textContent
                 };
 

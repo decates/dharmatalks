@@ -87,6 +87,7 @@
     <Content Include="js\sinon-1.7.3.js" />
     <Content Include="jplayer\Jplayer.swf" />
     <Content Include="testing\jasmineBootstrap.js" />
+    <Content Include="testing\sample-recent-talks.xml" />
     <Content Include="testing\testRunner.html" />
     <Content Include="views\home.html" />
     <Content Include="views\recent-talks.html" />

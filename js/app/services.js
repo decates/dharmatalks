@@ -24,7 +24,7 @@
                 self.model.isPlaying = true;
                 self.fireCallbacks();
             },
-            stop: function(url) {
+            stop: function() {
                 self.model.url = null;
                 self.model.isPlaying = false;
                 self.fireCallbacks();
@@ -71,7 +71,14 @@
             }
         };
     })
-    .service('RecentTalks', function($http, TalkService, XmlParser) {
+    .service('RecentTalks', function ($http, TalkService, XmlParser) {
+        var decodeFromXml = function(text) {
+            return text.replace(/&amp;/g, '&')
+                           .replace(/&lt;/g, '<')
+                           .replace(/&gt;/g, '>')
+                           .replace(/&quot;/g, '"');
+            };
+
         var promise = $http.get('http://www.dharmaseed.org/feeds/recordings/?max-entries=30');
         promise = promise.then(function(result) {
             var xml = XmlParser.constructor()(result.data);
@@ -80,15 +87,16 @@
             var talks = [];
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
-                var title = item.getElementsByTagName('title')[0].textContent;
+                var title = decodeFromXml(item.getElementsByTagName('title')[0].textContent);
                 var talk = {
-                    id: item.getElementsByTagName('guid')[0].textContent,
+                    id: decodeFromXml(item.getElementsByTagName('guid')[0].textContent),
                     teacherId: 1,
-                    teacherName: item.getElementsByTagName('author')[0].textContent,
+                    teacherName: decodeFromXml(item.getElementsByTagName('author')[0].textContent),
                     talkName: title.substr(title.indexOf(':') + 2),
-                    talkDesc: item.getElementsByTagName('description')[0].textContent,
-                    date: new Date(item.getElementsByTagName('pubDate')[0].textContent),
-                    mediaUrl: item.getElementsByTagName('link')[0].textContent
+                    talkDesc: decodeFromXml(item.getElementsByTagName('description')[0].textContent),
+                    date: new Date(decodeFromXml(item.getElementsByTagName('pubDate')[0].textContent)),
+                    mediaUrl: decodeFromXml(item.getElementsByTagName('link')[0].textContent),
+                    duration: item.getElementsByTagName('duration')[0].textContent
                 };
 
                 talks.push(talk);
@@ -99,14 +107,6 @@
             
             return talks;
         });
-        // TODO: Retrieve real talks via an Ajax call
-        //var talks = [
-        //    { id: 21051, teacherId: 55, teacherName: "Donald Rothberg", talkName: "The Anatomy of Ignorance - Transforming our Personal Ignorance", talkDesc: "After reviewing why and how we focus on transforming the different inter-related forms of ignorance - personal, social and spiritual - we focus on ten steps in transforming personal ignorance.", date: new Date(2013, 10, 23), mediaUrl: "http://www.dharmaseed.org/teacher/55/talk/17302/20120926-Donald_Rothberg-SR-a_new_beginning_guided_reflections.mp3" },
-        //    { id: 2, teacherId: 55, teacherName: "Donald Rothberg", talkName: "Talk2", talkDesc: "Talk Number 2 Description...", date: new Date(2013, 3, 4) },
-        //    { id: 3, teacherId: 191, teacherName: "Wes Nisker", talkName: "Talk3", talkDesc: "Talk Number 3 Description...", date: new Date(2012, 5, 6) },
-        //    { id: 4, teacherId: 191, teacherName: "Wes Nisker", talkName: "Talk4", talkDesc: "Talk Number 4 Description...", date: new Date(2011, 7, 8) }
-        //];
-
 
         return promise;
     });

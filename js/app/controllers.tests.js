@@ -1,7 +1,8 @@
 ﻿/// <reference path="controllers.js"/>
 /// <reference path="services.js"/>
-/// <reference path="../sinon-1.7.3.js"/>
-/// <reference path="../jasmine.js"/>
+/// <reference path="../lib/sinon-1.7.3.js"/>
+/// <reference path="../lib/jasmine.js"/>
+/// <reference path="../lib/angular-mocks.js"/>
 
 describe("Controllers", function () {
     describe("NowPlayingCtrl", function () {
@@ -32,10 +33,15 @@ describe("Controllers", function () {
     describe("RecentTalksCtrl", function () {
         it("should bind recent talks to the scope", inject(function($rootScope, $controller) {
             var scope = $rootScope.$new();
-            var recentTalks = {};
+            var recentTalks = { then: sinon.spy() };
+            var someResults = {};
             var ctrl = $controller('RecentTalksCtrl', { $scope: scope, RecentTalks: recentTalks });
 
-            expect(scope.talks).toBe(recentTalks);
+            // Call the 'then' method to simulate promise satisfied
+            recentTalks.then.firstCall.args[0](someResults);
+
+            // Check that the scope is bound to the results
+            expect(scope.talks).toBe(someResults);
         }));
     });
 });

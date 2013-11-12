@@ -55,6 +55,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.37.0\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.37.0\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap.css" />
@@ -74,17 +80,18 @@
     <Content Include="jplayer\skin\controls.jpg" />
     <Content Include="jplayer\skin\progress.png" />
     <Content Include="jplayer\skin\progress_sprite.jpg" />
-    <Content Include="js\angular-mocks.js" />
-    <Content Include="js\angular.min.js" />
+    <Content Include="js\lib\angular-audio-player.js" />
+    <Content Include="js\lib\angular-mocks.js" />
+    <Content Include="js\lib\angular.min.js" />
     <Content Include="js\app\app.js" />
     <Content Include="js\app\controllers.js" />
     <Content Include="js\app\controllers.tests.js" />
     <Content Include="js\app\services.js" />
     <Content Include="js\app\services.tests.js" />
-    <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\jasmine-html.js" />
-    <Content Include="js\jasmine.js" />
-    <Content Include="js\sinon-1.7.3.js" />
+    <Content Include="js\lib\bootstrap.min.js" />
+    <Content Include="js\lib\jasmine-html.js" />
+    <Content Include="js\lib\jasmine.js" />
+    <Content Include="js\lib\sinon-1.7.3.js" />
     <Content Include="jplayer\Jplayer.swf" />
     <Content Include="testing\jasmineBootstrap.js" />
     <Content Include="testing\sample-recent-talks.xml" />
@@ -103,6 +110,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

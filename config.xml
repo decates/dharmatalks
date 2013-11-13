@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns       = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "decates.co.uk.dhammatalks"
+        versionCode = "10"
+        version     = "1.0.0">
+
+  <name>DhammaTalks</name>
+
+  <description>
+    Listen to talks given by Buddhist teachers.
+  </description>
+
+  <author href="http://decates.co.uk" email="decates@gmail.com">
+    Mark de Cates
+  </author>
+
+  <feature name="http://api.phonegap.com/1.0/media"/>
+
+</widget>

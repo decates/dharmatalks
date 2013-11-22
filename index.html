@@ -4,48 +4,41 @@
     <title></title>
     <link href="css/default.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- jQuery is needed by jAudio player. Put it before Angular to avoid interference. -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script type="text/javascript" src="jplayer/jquery.jplayer.min.js"></script>
+
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/lib/angular.min.js"></script>
-    <script src="js/lib/angular-audio-player.js"></script>
     <script src="js/app/services.js"></script>
     <script src="js/app/controllers.js"></script>
+    <script src="js/app/directives.js"></script>
+    <script src="js/app/filters.js"></script>
     <script src="js/app/app.js"></script>
-    <script src="phonegap.js"></script> <!-- Use phonegap -->
-    <!-- jQuery is needed by jAudio player -->
-    <!--<link type="text/css" href="jplayer/skin/circle.player.css" rel="stylesheet" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-    <script src="jplayer/jquery.transform2d.js"></script>
-    <script src="jplayer/jquery.grab.js"></script>
-    <script type="text/javascript" src="jplayer/jquery.jplayer.min.js"></script>
-    <script src="jplayer/mod.csstransforms.min.js"></script>
-    <script src="jplayer/circle.player.js"></script>-->
 </head>
-<body ng-app="dharmaTalksApp">
-    <!-- The jPlayer div must not be hidden. Keep it at the root of the body element to avoid any such problems. -->
-    <div id="jquery_jplayer_1" class="cp-jplayer"></div>
-
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="btn btn-default navbar-btn" href="#/home"><span class="glyphicon glyphicon-home"></span></a>
+    <body ng-app="dharmaTalksApp">
+        <div id="jplayer" style="width: 0; height: 0;" dharma-jplayer></div>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="btn btn-default navbar-btn" href="#/home"><span class="glyphicon glyphicon-home"></span></a>
+                </div>
+                <span class="navbar-brand" style="margin-left: 0px;">Dharma Talks</span>
+                <div class="navbar-right" ng-controller="NowPlayingCtrl">
+                        <button type="button" class="btn btn-default navbar-btn" ng-disabled="!isPlaying" ng-click="goTo()">Now playing</button>
+                    </div>
             </div>
-            <span class="navbar-brand" style="margin-left: 0px;">Dharma Talks</span>
-            <!--<div class="navbar-right" ng-controller="NowPlayingCtrl">
-                <button type="button" class="btn btn-default navbar-btn" ng-disabled="!isPlaying" ng-href="{{url}}">Now playing</button>
-            </div>-->
+        </nav>
+
+        <div class="container" ng-view>
         </div>
-    </nav>
 
-    <div class="container" ng-view>
-    </div>
-    <a href="audio-test.html">Audio Test</a>
-
-
-    <!--
+        <!--
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Library</a></li>
                 <li class="active">Data</li>
             </ol>-->
-</body>
+    </body>
 </html>

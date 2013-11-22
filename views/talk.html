@@ -17,43 +17,15 @@
     
     <div class="input-group" ng-show="!isMediaLoaded" style="width: 15em; margin: 0 auto;">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button"  ng-click="loadMedia()"><span class="glyphicon glyphicon-play"></span></button>
+            <button class="btn btn-default" type="button"  ng-click="loadMedia(true)"><span class="glyphicon glyphicon-play"></span></button>
         </span>
         <span class="form-control"><em>Duration:</em> {{ talk.duration }}</span>
     </div>
 
     <div class="input-group" ng-show="isMediaLoaded" style="width: 15em; margin: 0 auto;">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button"  ng-click="audioPlayer.playPause()"><span class="glyphicon" ng-class="{ 'glyphicon-pause': audioPlayer.playing, 'glyphicon-play': !audioPlayer.playing }"></span></button>
+            <button class="btn btn-default" type="button"  ng-click="playPause()"><span class="glyphicon" ng-class="{ 'glyphicon-pause': isPlaying, 'glyphicon-play': !isPlaying }"></span></button>
         </span>
-        <span class="form-control">{{ audioPlayer.formatTime }}<b>/</b>{{ audioPlayer.formatDuration }}</span>
+        <span class="form-control">{{ currentTime|secondsToSpan }} <b>/</b> {{ playerData.status.duration|secondsToSpan }}</span>
     </div>
-
-    <!--<div class="btn" ng-click="audioPlayer.play()">
-                <span>Simple Play</span>
-                <i class="fa fa-play"></i>
-            </div>
-            <div class="btn" ng-click="audioPlayer.playPause()">
-                <i class="fa" ng-class="{ 'fa-pause': audioPlayer.playing, 'fa-play': !audioPlayer.playing }"></i>
-            </div>
-            <div class="btn" ng-click="audioPlayer.next()">
-                <span>Next</span>
-                <i class="fa fa-step-forward"></i>
-            </div>
-            <div class="btn" ng-click="audioPlayer.prev()">
-                <i class="fa fa-step-backward"></i>
-                <span>Prev</span>
-            </div>
-            <div class="btn btn-noclick">
-                <span>currentTrack: <span class="badge">{{ audioPlayer.currentTrack }}</span></span>
-            </div>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: audioPlayer.currentTime*100/audioPlayer.duration + '%' }">
-                    <span class="sr-only">{{ audioPlayer.currentTime*100/audioPlayer.duration }}% Complete</span>
-                </div>
-                <div class="time" ng-show="audioPlayer.formatTime">
-                    <span>{{ audioPlayer.formatTime }}</span><b>/</b><span>{{ audioPlayer.formatDuration }}</span>
-                </div>
-            </div>-->
-
 </div>

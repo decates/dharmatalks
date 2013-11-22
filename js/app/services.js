@@ -17,8 +17,8 @@
             self.callbacks.push(callback);
             callback(self.model);
         };
-
-        return {
+        
+        var service = {
             play: function(url) {
                 self.model.url = url;
                 self.model.isPlaying = true;
@@ -31,8 +31,14 @@
             },
             bindTo: function(callback) {
                 self.addCallback(callback);
-            }
+            },
+            getModel: function() {
+                return self.model;
+            },
+            player: null
         };
+
+        return service;
     })
     .service('XmlParser', function() {
         var parseXml;

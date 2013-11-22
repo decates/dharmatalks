@@ -1,4 +1,4 @@
-﻿angular.module('dharmaTalksApp', ['dharmaTalksServices', 'audioPlayer'])
+﻿angular.module('dharmaTalksApp', ['dharmaTalksServices', 'dharmaTalksDirectives', 'dharmaTalksFilters'])
     .config(['$routeProvider', function ($routeProvider) {
           $routeProvider.
             when('/home', {

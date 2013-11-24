@@ -17,7 +17,7 @@ describe("Controllers", function () {
 
         it("should set up the scope from the model", inject(function ($rootScope, $controller) {
             var scope = $rootScope.$new();
-            var testModel = { isPlaying: true, url: "someUrl" };
+            var testModel = { isPlaying: true };
             var model = { bindTo: sinon.spy() };
             var ctrl = $controller('NowPlayingCtrl', { $scope: scope, NowPlayingModel: model });
 
@@ -26,7 +26,6 @@ describe("Controllers", function () {
             
             // Check that the scope has been updated
             expect(scope.isPlaying).toBe(testModel.isPlaying);
-            expect(scope.url).toBe(testModel.url);
         }));
     });
 
@@ -42,6 +41,13 @@ describe("Controllers", function () {
 
             // Check that the scope is bound to the results
             expect(scope.talks).toBe(someResults);
+        }));
+    });
+    
+    describe("TalkCtrl", function () {
+        it("should fail", inject(function ($rootScope, $controller) {
+            var scope = $rootScope.$new();
+            expect(false).toBeTruthy();
         }));
     });
 });

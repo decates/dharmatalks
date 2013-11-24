@@ -21,7 +21,10 @@ describe("dharmaTalksServices", function () {
 
             expect(testModel).not.toBe(null);
             expect(testModel.url).toBe(null);
+            expect(testModel.item).toBe(null);
             expect(testModel.isPlaying).toBe(false);
+            expect(model.player).toBe(null);
+            expect(model.playerData).toBe(null);
         });
 
         describe("bindTo", function() {
@@ -30,6 +33,7 @@ describe("dharmaTalksServices", function () {
                 model.bindTo(callback);
                 expect(callback.calledOnce).toBeTruthy();
                 expect(callback.firstCall.args[0].url).toBe(null);
+                expect(callback.firstCall.args[0].item).toBe(null);
                 expect(callback.firstCall.args[0].isPlaying).toBe(false);
             });
         });
@@ -41,16 +45,18 @@ describe("dharmaTalksServices", function () {
                 model.bindTo(callback1);
                 model.bindTo(callback2);
                 var myUrl = "SomeUrl";
+                var myItem = { SomeItem: "something" };
 
                 // Reset the spies (so they don't count calls made by 'bind')
                 callback1.reset();
                 callback2.reset();
 
-                model.play(myUrl);
+                model.play(myUrl, myItem);
                 
                 expect(callback1.calledOnce).toBeTruthy();
                 expect(callback1.calledOnce).toBeTruthy();
                 expect(callback1.firstCall.args[0].url).toBe(myUrl);
+                expect(callback1.firstCall.args[0].item).toBe(myItem);
                 expect(callback1.firstCall.args[0].isPlaying).toBeTruthy();
             });
         });
@@ -62,7 +68,7 @@ describe("dharmaTalksServices", function () {
                 model.bindTo(callback1);
                 model.bindTo(callback2);
 
-                model.play("someurl");
+                model.play("someurl", { Some: "item"});
 
                 // Reset the spies (so they don't count previous calls)
                 callback1.reset();
@@ -73,6 +79,7 @@ describe("dharmaTalksServices", function () {
                 expect(callback1.calledOnce).toBeTruthy();
                 expect(callback1.calledOnce).toBeTruthy();
                 expect(callback1.firstCall.args[0].url).toBe(null);
+                expect(callback1.firstCall.args[0].item).toBe(null);
                 expect(callback1.firstCall.args[0].isPlaying).toBeFalsy();
             });
         });

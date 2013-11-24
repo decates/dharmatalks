@@ -10,7 +10,6 @@
 
 function NowPlayingCtrl($scope, $location, NowPlayingModel) {
     NowPlayingModel.bindTo(function(model) {
-        $scope.url = model.url;
         $scope.isPlaying = model.isPlaying;
     });
 
@@ -55,6 +54,7 @@ function TalkCtrl($scope, $routeParams, $location, TalkService, NowPlayingModel)
             $scope.safeApply(function (scope) {
                 scope.playerData = event.jPlayer;
                 scope.currentTime = event.jPlayer.status.currentTime;
+                NowPlayingModel.playerData = event.jPlayer; // Store the playerdata on the model so it's persisted if the user goes and comes back
             });
         });
 
@@ -63,25 +63,31 @@ function TalkCtrl($scope, $routeParams, $location, TalkService, NowPlayingModel)
             $scope.player.jPlayer('play');
 
             // Record the fact that we're playing with the shared service
-            NowPlayingModel.play($location.url());
+            NowPlayingModel.play($location.url(), $scope.talk);
+            $scope.isPlaying = true;
+        } else {
+            // Retrieve any player data previously stored on the shared model
+            // TODO: Tidy this up
+            $scope.playerData = NowPlayingModel.playerData;
+            $scope.currentTime = NowPlayingModel.playerData.status.currentTime;
+            $scope.isPlaying = !NowPlayingModel.getModel().isPaused;
         }
         
         $scope.isMediaLoaded = true;
-        $scope.isPlaying = true;
     };
 
     $scope.playPause = function() {
         if ($scope.isPlaying) {
             $scope.player.jPlayer('pause');
+            NowPlayingModel.pause();
         } else {
             $scope.player.jPlayer('play');
-            NowPlayingModel.play($location.url());
+            NowPlayingModel.play($location.url(), $scope.talk);
         }
 
         $scope.isPlaying = !$scope.isPlaying;
     };
     
-
     // Check if this talk is already being played
     if (NowPlayingModel.getModel().url == $location.url()) {
         // Already playing this one...

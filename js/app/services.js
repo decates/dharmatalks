@@ -4,7 +4,9 @@
         self.callbacks = [];
         self.model = {
             url: null,
-            isPlaying: false
+            item: null,
+            isPlaying: false,
+            isPaused: false
         };
 
         self.fireCallbacks = function() {
@@ -19,15 +21,24 @@
         };
         
         var service = {
-            play: function(url) {
+            play: function(url, item) {
                 self.model.url = url;
+                self.model.item = item;
                 self.model.isPlaying = true;
+                self.model.isPaused = false;
+                
+                // TODO: Load media if necessary
                 self.fireCallbacks();
             },
             stop: function() {
                 self.model.url = null;
+                self.model.item = null;
                 self.model.isPlaying = false;
+                self.model.isPaused = false;
                 self.fireCallbacks();
+            },
+            pause: function() {
+                self.model.isPaused = true;
             },
             bindTo: function(callback) {
                 self.addCallback(callback);
@@ -35,7 +46,8 @@
             getModel: function() {
                 return self.model;
             },
-            player: null
+            player: null,
+            playerData: null
         };
 
         return service;

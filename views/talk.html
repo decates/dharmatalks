@@ -11,21 +11,17 @@
     </div>
 </div>
 <div style="margin: auto 0;">
-    <audio player-control="audioPlayer" playlist="audioPlaylist" audio-player>
-    </audio>
-    
-    
-    <div class="input-group" ng-show="!isMediaLoaded" style="width: 15em; margin: 0 auto;">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"  ng-click="loadMedia(true)"><span class="glyphicon glyphicon-play"></span></button>
-        </span>
-        <span class="form-control"><em>Duration:</em> {{ talk.duration }}</span>
+    <div ng-show="!isMediaLoaded" style="width: 25em; margin: 0 auto;">
+        <div class="btn-group btn-group-lg">
+            <button class="btn btn-primary" type="button" ng-click="loadMedia(true)"><span class="glyphicon glyphicon-play"></span></button>
+            <button class="btn btn-default disabled"><em>Duration:</em> {{ talk.duration }}</button>
+        </div>
     </div>
 
-    <div class="input-group" ng-show="isMediaLoaded" style="width: 15em; margin: 0 auto;">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"  ng-click="playPause()"><span class="glyphicon" ng-class="{ 'glyphicon-pause': isPlaying, 'glyphicon-play': !isPlaying }"></span></button>
-        </span>
-        <span class="form-control">{{ currentTime|secondsToSpan }} <b>/</b> {{ playerData.status.duration|secondsToSpan }}</span>
+    <div ng-show="isMediaLoaded" style="width: 25em; margin: 0 auto;">
+        <div class="btn-group btn-group-lg">
+            <button class="btn btn-primary" type="button" ng-click="playPause()" ng-class="{ 'active': isPlaying }"><span class="glyphicon" ng-class="{ 'glyphicon-pause': isPlaying, 'glyphicon-play': !isPlaying }"></span></button>
+            <button class="btn btn-default disabled">{{ currentTime|secondsToSpan }} <b>/</b> {{ playerData.status.duration|secondsToSpan }}</button>
+        </div>
     </div>
 </div>
